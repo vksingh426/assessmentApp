@@ -19,12 +19,17 @@ public class UserToProfile {
 		try {
 			transaction = session.beginTransaction();
 
+			for (int i = 0; i < 100; i++) {
+		
+			User user = new User();
 			UserProfile userProfile = new UserProfile(faker.name().name(),
 					faker.number().numberBetween(1996, 2018) + "", faker.number().numberBetween(10, 50),
-					faker.address().fullAddress());
-			User user = new User(faker.internet().emailAddress(), faker.internet().password(), userProfile);
+					faker.address().fullAddress(), user);
+			user.setEmail(faker.internet().emailAddress());
+			user.setPassword(faker.internet().password());
+			user.setProfile(userProfile);
 			session.save(user);
-			session.save(userProfile);
+			}
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
@@ -32,8 +37,9 @@ public class UserToProfile {
 		} finally {
 			session.close();
 		}
-		
+
 		System.out.println("Done");
+		System.exit(0);
 	}
 
 }

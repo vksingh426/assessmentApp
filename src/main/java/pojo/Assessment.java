@@ -1,75 +1,114 @@
 package pojo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
-import com.sun.jmx.snmp.Timestamp;
-@Entity
-@Table(name="ASSESSMENT")
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity(name = "ASSESSMENT")
 public class Assessment {
-	@Id
-	@GeneratedValue
+	
 	private Integer id;
+	@Column(name = "role")
 	private String role;
+	@Column(name = "title")
 	private String title;
-	private Timestamp date;
+	@Column(name = "date")
+	private String date;
+	@Column(name = "description")
 	private String description;
-	@OneToMany
-	private ArrayList<User> user = new ArrayList<>();
+
+	
+	private Set<Question> questionList = new HashSet<>();
+	
+	private User user;
 	
 	public Assessment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Assessment(String role, String title, Timestamp date, String description) {
+
+	public Assessment(String role, String title, String date, String description, Set<Question> questionList) {
 		super();
 		this.role = role;
 		this.title = title;
 		this.date = date;
 		this.description = description;
+		this.questionList = questionList;
 	}
+
+	
+	
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@Id
+	@GeneratedValue(generator = "generator")
+	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getRole() {
 		return role;
 	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Timestamp getDate() {
+
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Timestamp date) {
+
+	public void setDate(String date) {
 		this.date = date;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public ArrayList<User> getUser() {
+	
+	@ManyToOne
+	public User getUser() {
 		return user;
 	}
-	public void setUser(ArrayList<User> user) {
+
+	public void setUser(User user) {
 		this.user = user;
 	}
-	
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	public Set<Question> getQuestionList() {
+		return questionList;
+	}
+
+	public void setQuestionList(Set<Question> questionList) {
+		this.questionList = questionList;
+	}
 	
 
 }

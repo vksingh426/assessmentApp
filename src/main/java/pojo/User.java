@@ -1,25 +1,33 @@
 package pojo;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
-@Table(name = "USER")
+@Table(name = "student_user")
 public class User {
-@Id
-@GeneratedValue
+
 	private Integer id;
-@Column(name = "email")
 	private String email;
-@Column(name = "password")
 	private String password;
-	
-	@OneToOne
+
 	private UserProfile profile;
+	
+	private Set<Assessment> assessments = new HashSet<>();
 
 	public User() {
 		super();
@@ -32,7 +40,12 @@ public class User {
 		this.password = password;
 		this.profile = profile;
 	}
+
 	
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@Id
+	@GeneratedValue(generator = "generator")
+	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return id;
 	}
@@ -57,6 +70,8 @@ public class User {
 		this.password = password;
 	}
 
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	public UserProfile getProfile() {
 		return profile;
 	}
@@ -64,6 +79,16 @@ public class User {
 	public void setProfile(UserProfile profile) {
 		this.profile = profile;
 	}
+
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	public Set<Assessment> getAssessments() {
+		return assessments;
+	}
+
+	public void setAssessments(Set<Assessment> assessments) {
+		this.assessments = assessments;
+	}
 	
+
 }

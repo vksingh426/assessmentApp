@@ -1,5 +1,9 @@
 package assessmentApp;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -22,8 +26,21 @@ public class UserToAssessment {
 		try {
 			transaction = session.beginTransaction();
 
+			User user = new User();
+			user.setEmail(faker.internet().emailAddress());
+			user.setPassword(faker.internet().password());
 			
+			Set<Assessment> list = new HashSet<>();
+			Assessment assessment = new Assessment();
+			assessment.setRole("role");
+			assessment.setTitle("title");
+			assessment.setDate(null);
+			assessment.setDescription("description");
+			assessment.setUser(user);
+			list.add(assessment);
 			
+			user.setAssessments(list);
+			session.save(user);
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
