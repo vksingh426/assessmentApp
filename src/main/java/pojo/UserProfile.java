@@ -1,15 +1,7 @@
 package pojo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "USER_PROFILE")
@@ -20,9 +12,7 @@ public class UserProfile {
 	private Integer age;
 	private String address;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
+
 
 	public UserProfile() {
 		super();
@@ -35,10 +25,7 @@ public class UserProfile {
 		this.age = age;
 		this.address = address;
 	}
-	@GenericGenerator(name = "generator", strategy = "increment")
-	@Id
-	@GeneratedValue(generator = "generator")
-	@Column(name = "id", unique = true, nullable = false)
+	
 	public String getName() {
 		return name;
 	}

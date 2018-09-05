@@ -14,7 +14,10 @@
 
 		<property name="show_sql">true</property>
 		
-		<!--  <mapping class="pojo.Address"></mapping> --> 
+		<!--  <mapping class="pojo.Profile"></mapping> --> 
+		
+		<mapping class="pojo.User"></mapping>
+		<mapping class="pojo.UserProfile"></mapping>
 		
 	</session-factory>
 </hibernate-configuration>
