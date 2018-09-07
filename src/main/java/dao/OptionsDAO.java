@@ -14,7 +14,7 @@ import util.HibernateSessionFactory;
 public class OptionsDAO {
 	private static final Logger log = LoggerFactory.getLogger(OptionsDAO.class);
 
-	private static final String TEXT = "text";
+	public static final String TEXT = "text";
 	
 	Session session = HibernateSessionFactory.getSession();
 	

@@ -1,9 +1,7 @@
 package pojo;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +10,7 @@ import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "opton")
+@Entity(name = "option")
 public class Options {
 
 	
@@ -30,6 +28,12 @@ public class Options {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Options(String text, boolean isCorrect) {
+		super();
+		this.text = text;
+		this.isCorrect = isCorrect;
+	}
+
 	public Options(String text, boolean isCorrect, Set<Question> questions) {
 		super();
 		this.text = text;

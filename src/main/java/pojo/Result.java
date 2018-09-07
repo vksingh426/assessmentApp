@@ -7,25 +7,21 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name="results")
+@Entity(name = "results")
 public class Result {
-	
+
 	private Integer id;
-	@Column(name = "duration")
 	private String duration;
-	@Column(name = "questionsAttempted")
 	private Integer questionsAttempted;
-	@Column(name = "questionsNotAttempted")
 	private Integer questionsNotAttempted;
-	@Column(name = "marks")
 	private Integer marks;
-	@Column(name = "time")
 	private String time;
-	
+
 	public Result() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Result(String duration, Integer questionsAttempted, Integer questionsNotAttempted, Integer marks,
 			String time) {
 		super();
@@ -35,7 +31,7 @@ public class Result {
 		this.marks = marks;
 		this.time = time;
 	}
-	
+
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
 	@GeneratedValue(generator = "generator")
@@ -43,39 +39,49 @@ public class Result {
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getDuration() {
 		return duration;
 	}
-		public void setDuration(String duration) {
+
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
+
 	public Integer getQuestionsAttempted() {
 		return questionsAttempted;
 	}
+
 	public void setQuestionsAttempted(Integer questionsAttempted) {
 		this.questionsAttempted = questionsAttempted;
 	}
+
 	public Integer getQuestionsNotAttempted() {
 		return questionsNotAttempted;
 	}
+
 	public void setQuestionsNotAttempted(Integer questionsNotAttempted) {
 		this.questionsNotAttempted = questionsNotAttempted;
 	}
+
 	public Integer getMarks() {
 		return marks;
 	}
+
 	public void setMarks(Integer marks) {
 		this.marks = marks;
 	}
+
 	public String getTime() {
 		return time;
 	}
+
 	public void setTime(String time) {
 		this.time = time;
 	}
-	
 
 }

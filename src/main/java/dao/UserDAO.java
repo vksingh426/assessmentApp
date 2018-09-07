@@ -12,9 +12,9 @@ import util.HibernateSessionFactory;
 public class UserDAO {
 	private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
 
-	private static final String NAME = "name";
-	private static final String EMAIL = "email";
-	private static final String PASSWORD = "password";
+	public static final String NAME = "name";
+	public static final String EMAIL = "email";
+	public static final String PASSWORD = "password";
 
 	Session session = HibernateSessionFactory.getSession();
 	public List findByProperty(String propertyName, Object value) {

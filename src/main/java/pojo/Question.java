@@ -8,25 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name = "QUESTION")
 public class Question {
-	
+
 	private Integer id;
-	@Column(name = "text")
 	private String text;
-	@Column(name = "time")
 	private String time;
-	@Column(name = "marks")
 	private Integer marks;
-	@Column(name = "isAttempted")
 	private boolean isAttempted;
 
-	
 	private Set<Assessment> assessmentList = new HashSet<>();
-
 	private Set<Options> options = new HashSet<>();
 	
 	public Question() {
@@ -34,8 +27,25 @@ public class Question {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Question(String text, String time, Integer marks, boolean isAttempted,
-			Set<Assessment> assessmentList) {
+	public Question( String text, String time, Integer marks, boolean isAttempted) {
+		super();
+		this.text = text;
+		this.time = time;
+		this.marks = marks;
+		this.isAttempted = isAttempted;
+	}
+
+	public Question(Integer id, String text, String time, Integer marks, boolean isAttempted, Set<Options> options) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.time = time;
+		this.marks = marks;
+		this.isAttempted = isAttempted;
+		this.options = options;
+	}
+
+	public Question(String text, String time, Integer marks, boolean isAttempted, Set<Assessment> assessmentList) {
 		super();
 		this.text = text;
 		this.time = time;
@@ -43,6 +53,7 @@ public class Question {
 		this.isAttempted = isAttempted;
 		this.assessmentList = assessmentList;
 	}
+
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
 	@GeneratedValue(generator = "generator")
@@ -86,8 +97,7 @@ public class Question {
 	public void setAttempted(boolean isAttempted) {
 		this.isAttempted = isAttempted;
 	}
-	
-	
+
 	@ManyToMany(mappedBy = "questionList")
 	public Set<Assessment> getAssessmentList() {
 		return assessmentList;
@@ -96,8 +106,7 @@ public class Question {
 	public void setAssessmentList(Set<Assessment> assessmentList) {
 		this.assessmentList = assessmentList;
 	}
-	
-	
+
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	public Set<Options> getOptions() {
 		return options;
@@ -106,6 +115,5 @@ public class Question {
 	public void setOptions(Set<Options> options) {
 		this.options = options;
 	}
-	
 
 }

@@ -6,6 +6,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.github.javafaker.Faker;
+
+import javaTOXml.OptionData;
+import javaTOXml.QuestionData;
 import pojo.Options;
 import pojo.Question;
 import util.HibernateSessionFactory;
@@ -16,37 +19,39 @@ public class QuestionToOptions {
 
 		Faker faker = new Faker();
 		Session session = HibernateSessionFactory.getSession();
-		Transaction transaction = null;
-
+		
 		try {
-			session.beginTransaction();
+			session.getTransaction().begin();
 			
-			Set<Question> list = new HashSet<>();
+			QuestionData questionData = new QuestionData();
+			OptionData optionData = new OptionData();
+			
+			Set<Options> optionsList = new HashSet<>();
+			Set<Question> questionsList = new HashSet<>();
 			Question question = new Question();
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 10; i++) {
 				
-			question.setText("text");
-			question.setTime("time");
+			question.setText(questionData.getText());
+			question.setTime(questionData.getTime());
 			question.setAttempted(false);
 			question.setMarks(faker.number().randomDigit());
-			list.add(question);
-			}
-			Set<Options> optionList = new HashSet<>();
+			questionsList.add(question);
+			
 			Options options = new Options();
-			for (int i = 0; i < 3; i++) {
+			for (int i1 = 0; i1 < 3; i1++) {
 				
 			options.setText(question.getText());
 			options.setCorrect(true);
-			optionList.add(options);
+			optionsList.add(options);
 			
-			question.setOptions(optionList);
-			options.setQuestions(list);
-			session.save(optionList);
- 			session.save(list);
+			question.setOptions(optionsList);
+			options.setQuestions(questionsList);
+			session.save(question);
+ 			session.save(options);
 			}
- 			transaction.commit();
+			}
+ 			session.getTransaction().commit();
 		} catch (HibernateException e) {
-			transaction.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

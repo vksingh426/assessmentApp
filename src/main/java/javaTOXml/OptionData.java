@@ -1,18 +1,19 @@
-package sampleTest;
+package javaTOXml;
 
-public class Option {
+public class OptionData {
+	
 	private Integer id;
-	private String text;
-	private Boolean is_correct;
-	public Option() {
+	private String text; 
+	private boolean isCorrect;
+	public OptionData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Option(Integer id, String text, Boolean is_correct) {
+	public OptionData(Integer id, String text, boolean isCorrect) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.is_correct = is_correct;
+		this.isCorrect = isCorrect;
 	}
 	public Integer getId() {
 		return id;
@@ -26,12 +27,12 @@ public class Option {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Boolean getIs_correct() {
-		return is_correct;
+	public boolean isCorrect() {
+		return isCorrect;
 	}
-	public void setIs_correct(Boolean is_correct) {
-		this.is_correct = is_correct;
+	public void setCorrect(boolean isCorrect) {
+		this.isCorrect = isCorrect;
 	}
-
+	
 
 }

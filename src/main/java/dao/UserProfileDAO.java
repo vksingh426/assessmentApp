@@ -14,10 +14,10 @@ public class UserProfileDAO {
 
 	private static final Logger log = LoggerFactory.getLogger(UserProfileDAO.class);
 
-	private static final String NAME = "name";
-	private static final String DOB = "dob";
-	private static final String ADDRESS = "address";
-	private static final String AGE = "age";
+	public static final String NAME = "name";
+	public static final String DOB = "dob";
+	public static final String ADDRESS = "address";
+	public static final String AGE = "age";
 
 	Session session = HibernateSessionFactory.getSession();
 	public UserProfile findById(java.lang.Integer id) {
@@ -55,7 +55,7 @@ public class UserProfileDAO {
 	public List<UserProfile> findByAddress(Object address){
 		return findByProperty(ADDRESS, address);
 	}
-//	public List<UserProfile> findByAge(Object age){
-//		return findByProperty(propertyName, value)
-//	}
+	public List<UserProfile> findByAge(Object age){
+		return findByProperty(AGE, age);
+	}
 }

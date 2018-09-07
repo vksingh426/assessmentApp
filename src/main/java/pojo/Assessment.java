@@ -1,41 +1,39 @@
 package pojo;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name = "ASSESSMENT")
 public class Assessment {
 	
 	private Integer id;
-	@Column(name = "role")
 	private String role;
-	@Column(name = "title")
 	private String title;
-	@Column(name = "date")
 	private String date;
-	@Column(name = "description")
 	private String description;
 
-	
 	private Set<Question> questionList = new HashSet<>();
-	
 	private User user;
 	
 	public Assessment() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Assessment(String role, String title, String date, String description) {
+		super();
+		this.role = role;
+		this.title = title;
+		this.date = date;
+		this.description = description;
 	}
 
 	public Assessment(String role, String title, String date, String description, Set<Question> questionList) {
@@ -46,8 +44,6 @@ public class Assessment {
 		this.description = description;
 		this.questionList = questionList;
 	}
-
-	
 	
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id

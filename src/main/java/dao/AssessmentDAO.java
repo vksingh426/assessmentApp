@@ -14,10 +14,10 @@ import util.HibernateSessionFactory;
 public class AssessmentDAO {
 	private static final Logger log = LoggerFactory.getLogger(AssessmentDAO.class);
 
-	private static final String ROLE = "role";
-	private static final String TITLE = "title";
-	private static final String DATE = "date";
-	private static final String DESCRIPTION="description";
+	public static final String ROLE = "role";
+	public static final String TITLE = "title";
+	public static final String DATE = "date";
+	public static final String DESCRIPTION="description";
 
 	Session session = HibernateSessionFactory.getSession();
 	public Assessment findById(java.lang.Integer id) {

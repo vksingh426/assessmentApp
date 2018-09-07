@@ -10,18 +10,19 @@
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.password">root</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-	    <property name="hibernate.hbm2ddl.auto">create</property>
+	    <property name="hibernate.hbm2ddl.auto">update</property>
 
 		<property name="show_sql">true</property>
 		
 		<!--  <mapping class="pojo.Profile"></mapping> -->
-		
-		<mapping class="pojo.Assessment"></mapping>
-		<mapping class="pojo.User"></mapping>
+	
 		<mapping class="pojo.UserProfile"></mapping>
 		<mapping class="pojo.Question"></mapping>
 		<mapping class="pojo.Options"></mapping>  
 		<mapping class="pojo.Result"></mapping>
+		<mapping class="pojo.Assessment"></mapping>
+		<mapping class="pojo.User"></mapping>
+			
 		
 	</session-factory>
 </hibernate-configuration>
