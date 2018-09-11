@@ -1,7 +1,10 @@
 package javaTOXml;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 public class QuestionData {
 	
@@ -10,7 +13,7 @@ public class QuestionData {
 	private String time;
 	private Integer marks;
 	private boolean isAttempted;
-	
+		
 	Set<OptionData> optionDatas = new HashSet<>();
 
 	public QuestionData() {
@@ -80,7 +83,7 @@ public class QuestionData {
 	for (int j=1;j<=4;j++){
     	OptionData option2 = new OptionData();
     		option2.setId(j);
-    		option2.setText("options");
+    		option2.setText("120 metres");
     		if(j==2){
     		option2.setCorrect(true);
     		}
@@ -90,6 +93,6 @@ public class QuestionData {
     		optionDatas.add(option2);
     	}
 	
+		}
 	
-	}
 }

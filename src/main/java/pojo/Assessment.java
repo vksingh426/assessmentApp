@@ -36,15 +36,6 @@ public class Assessment {
 		this.description = description;
 	}
 
-	public Assessment(String role, String title, String date, String description, Set<Question> questionList) {
-		super();
-		this.role = role;
-		this.title = title;
-		this.date = date;
-		this.description = description;
-		this.questionList = questionList;
-	}
-	
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
 	@GeneratedValue(generator = "generator")
@@ -104,6 +95,12 @@ public class Assessment {
 
 	public void setQuestionList(Set<Question> questionList) {
 		this.questionList = questionList;
+	}
+
+	public Assessment(Set<Question> questionList, User user) {
+		super();
+		this.questionList = questionList;
+		this.user = user;
 	}
 	
 

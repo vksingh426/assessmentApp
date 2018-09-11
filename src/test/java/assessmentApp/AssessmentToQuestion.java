@@ -28,7 +28,7 @@ public class AssessmentToQuestion {
 	Set<Assessment> assessmentsList = new HashSet<>();
 	
     Question questions = new Question();	
-	questions.setText("abc");
+	questions.setText("abc"); 
 	questions.setTime("time");
 	questions.setMarks(faker.number().randomDigit());
 	questions.setAttempted(true);

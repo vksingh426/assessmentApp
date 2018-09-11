@@ -15,12 +15,9 @@ public class Options {
 
 	
 	private Integer id;
-	@Column(name="text")
 	private String text;
-	@Column(name="isCorrect")
 	private boolean isCorrect;
 	
-
 	Set<Question> questions = new HashSet<>();
 	
 	public Options() {

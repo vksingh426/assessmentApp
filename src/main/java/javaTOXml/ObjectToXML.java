@@ -25,11 +25,11 @@ public class ObjectToXML {
 		data1.setDescription("Advanced");
 	    
 		Set<QuestionData> quesList = new HashSet<>();
-	   for (int i = 1; i < 20; i++) {
+	   for (int i = 0; i <20; i++) {
 		   
 		QuestionData data2 = new QuestionData();
 		data2.setId(i);
-		data2.setText("TEXT");
+		data2.setText("A train running at the speed of 60 km/hr crosses a pole in 9 seconds. What is the length of the train?");
 		data2.setAttempted(true);
 	    data2.setMarks(faker.number().numberBetween(10, 90));
 	    data2.setTime("2-Hours");
